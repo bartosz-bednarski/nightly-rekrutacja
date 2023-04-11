@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+textarea:focus,
+input:focus {
+  outline: none;
+}
+html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}

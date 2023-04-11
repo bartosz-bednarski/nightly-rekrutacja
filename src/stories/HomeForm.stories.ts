@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "storybook-solidjs";
 import { within, userEvent } from "@storybook/testing-library";
 import App from "../App";
-import Home from "../components/Home";
+import HomeForm from "../components/HomeForm";
 
 const meta = {
-  title: "Home",
-  component: App,
-} satisfies Meta<typeof App>;
+  title: "Home/HomeForm",
+  component: HomeForm,
+} satisfies Meta<typeof HomeForm>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

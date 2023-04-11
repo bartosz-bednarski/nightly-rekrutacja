@@ -3,10 +3,9 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 const App: Component = () => {
   return (
-    <div>
+    <div class="flex flex-col bg-background-blue h-screen">
       <Header />
       <Home />
-      <h1 class="text-3xl font-bold underline">Hello world!</h1>
     </div>
   );
 };
