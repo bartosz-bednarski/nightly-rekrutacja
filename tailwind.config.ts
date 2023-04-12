@@ -3,10 +3,15 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontSize: {
+        "10px": "10px",
+      },
       height: {
         "492px": "496px",
+        "300px": "300px",
       },
       width: {
+        "806px": "806px",
         "332px": "332px",
         "300px": "300px",
         "237px": "237px",
@@ -31,6 +36,7 @@ module.exports = {
         "input-button-background": "rgba(96, 103, 249, 0.25);",
         "input-button-color": "#8793FF",
         "withdraw-button-background": "#6067F9",
+        "chart-green": "#5AB88B",
       },
       boxShadow: {
         "withdraw-shadow": "0px 4px 20px rgba(0, 0, 0, 0.75)",
