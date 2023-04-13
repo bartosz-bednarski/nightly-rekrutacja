@@ -9,6 +9,7 @@ module.exports = {
       height: {
         "492px": "496px",
         "300px": "300px",
+        "312px": "312px",
       },
       width: {
         "806px": "806px",
@@ -40,6 +41,7 @@ module.exports = {
       },
       boxShadow: {
         "withdraw-shadow": "0px 4px 20px rgba(0, 0, 0, 0.75)",
+        "menu-shadow": " 2px 4px 12px rgba(0, 0, 0, 0.5)",
       },
     },
   },

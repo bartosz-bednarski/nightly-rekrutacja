@@ -3,9 +3,17 @@ import { LineData, LineType, createChart } from "lightweight-charts";
 import { createEffect, createRenderEffect, createSignal } from "solid-js";
 import type { Component } from "solid-js";
 
-const HomeChart: Component = () => {
+const HomeChart: Component<{
+  coin: { coin: String; token: string; image: any };
+}> = (props) => {
   createEffect(() => {
-    createChartBox(chartTime());
+    if (props.coin) {
+      const THREE_MONTHS_DATA = getDateArray(
+        new Date(new Date().setDate(currDay.getDate() - 91)),
+        endDate
+      );
+      setChartTime(THREE_MONTHS_DATA);
+    }
   });
   const endDate = new Date();
   const currDay = new Date();
@@ -29,26 +37,35 @@ const HomeChart: Component = () => {
 
     return arr;
   };
-  const ONE_WEEK_DATA: any = getDateArray(
-    new Date(new Date().setDate(currDay.getDate() - 7)),
-    endDate
-  );
-  const ONE_MONTH_DATA: any = getDateArray(
-    new Date(new Date().setDate(currDay.getDate() - 30)),
-    endDate
-  );
   const THREE_MONTHS_DATA: any = getDateArray(
-    new Date(new Date().setDate(currDay.getDate() - 90)),
+    new Date(new Date().setDate(currDay.getDate() - 91)),
     endDate
   );
+  const DAILY_DATA = [
+    { time: "2019-04-11 09:43", value: 180.34 },
+    { time: "2019-04-11 09:44", value: 180.82 },
+    { time: "2019-04-11 09:45", value: 175.77 },
+    { time: "2019-04-11 09:46", value: 178.58 },
+    { time: "2019-04-11 09:47", value: 177.52 },
+  ];
+  const ONE_MONTH_DATA: any = THREE_MONTHS_DATA.slice(60);
+  const ONE_WEEK_DATA: any = THREE_MONTHS_DATA.slice(84);
   console.log(THREE_MONTHS_DATA);
+  console.log(ONE_MONTH_DATA);
   const [chartTime, setChartTime] = createSignal(THREE_MONTHS_DATA);
-  const createChartBox = (chartData) => {
+  const createChartBox = (chartData: any) => {
     const chartbox = document.createElement("div");
-    chartbox.style.position = "relative";
+    chartbox.style.width = "806px";
+    chartbox.style.height = "300px";
+    chartbox.style.background = "#040407";
+    chartbox.style.borderRadius = "8px";
+    chartbox.style.display = "flex";
+    chartbox.style.alignItems = "center";
+    chartbox.style.justifyContent = "center";
+    chartbox.style.border = "1px solid #2B344D";
     const chart = createChart(chartbox, {
-      width: 806,
-      height: 300,
+      width: 800,
+      height: 290,
 
       layout: {
         background: {
@@ -61,7 +78,7 @@ const HomeChart: Component = () => {
 
       timeScale: {
         borderColor: "#2B344D",
-        barSpacing: 6,
+        barSpacing: 5,
         timeVisible: false,
         fixLeftEdge: true,
         secondsVisible: true,
@@ -162,7 +179,13 @@ const HomeChart: Component = () => {
   return (
     <div class="w-806px h-300px mt-16 rounded-lg  relative">
       <div class="flex flex-row gap-1 items-center justify-center absolute top-0 left-0 z-20 p-2">
-        <button class="py-1 px-2 text-xs text-white rounded bg-border-component">
+        <button
+          class="py-1 px-2 text-xs text-white rounded bg-border-component"
+          onClick={() => {
+            setChartTime(DAILY_DATA);
+            console.log(chartTime);
+          }}
+        >
           24H
         </button>
         <button
