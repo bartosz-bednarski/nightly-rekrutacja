@@ -23,14 +23,18 @@ const Chart: Component<{
   const [chartTime, setChartTime] = createSignal(props.coin.dataDaily);
   const createChartBox = (chartData: any) => {
     const chartbox = document.createElement("div");
-    chartbox.style.width = "806px";
-    chartbox.style.height = "300px";
-    chartbox.style.background = "#040407";
-    chartbox.style.borderRadius = "8px";
-    chartbox.style.display = "flex";
-    chartbox.style.alignItems = "center";
-    chartbox.style.justifyContent = "center";
-    chartbox.style.border = "1px solid #2B344D";
+    chartbox.setAttribute(
+      "class",
+      "w-4/5 h-300px bg-input-background border-border-component border flex items-center content-center rounded-lg   xl:w-auto "
+    );
+    // chartbox.style.width = "auto";
+    // chartbox.style.height = "300px";
+    // chartbox.style.background = "#040407";
+    // chartbox.style.borderRadius = "8px";
+    // chartbox.style.display = "flex";
+    // chartbox.style.alignItems = "center";
+    // chartbox.style.justifyContent = "center";
+    // chartbox.style.border = "1px solid #2B344D";
     const chart = createChart(chartbox, {
       width: 800,
       height: 290,
@@ -163,7 +167,7 @@ const Chart: Component<{
 
   //Return main fnc
   return (
-    <div class="w-806px h-300px mt-16 rounded-lg  relative">
+    <div class="xl:w-auto xl:mx-0 w-4/5 h-300px mt-16 rounded-lg relative mx-auto">
       <div class="flex flex-row gap-1 items-center justify-center absolute top-0 left-0 z-20 p-2">
         <button
           class="py-1 px-2 text-xs text-white rounded bg-border-component"

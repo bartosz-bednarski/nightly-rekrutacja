@@ -17,7 +17,7 @@ const Home: Component = () => {
   });
 
   return (
-    <div class="flex flex-row h-screen ">
+    <div class=" flex xl:mb-auto xl:flex-row xl:h-auto xl:items-start items-center flex-col mb-8 h-auto">
       <Form
         coin={currentCoin()}
         setCoin={(coinData) => setCurrentCoin(coinData)}
