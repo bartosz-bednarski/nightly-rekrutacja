@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 const App: Component = () => {
   return (
-    <div class="flex flex-col bg-background-blue h-screen">
+    <div class="flex flex-col bg-background-blue  ">
       <Header />
       <Home />
     </div>

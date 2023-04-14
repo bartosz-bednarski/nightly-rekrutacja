@@ -2,7 +2,7 @@ import { Component } from "solid-js";
 
 const Header: Component = () => {
   return (
-    <div class="px-6 py-4">
+    <div class="px-6 py-4 ">
       <svg
         width="172"
         height="48"

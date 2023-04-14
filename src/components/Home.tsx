@@ -1,24 +1,28 @@
 import { Component, createEffect, createSignal } from "solid-js";
-import HomeForm from "./HomeForm";
-import HomeChart from "./HomeChart";
+import Form from "./form/Form";
+import Chart from "./chart/Chart";
 import bitcoin from "../assets/bitcoin.png";
 const Home: Component = () => {
   const [currentCoin, setCurrentCoin] = createSignal({
     coin: "Bitcoin",
     token: "BTC",
     image: bitcoin,
+    data3m: [],
+    data1m: [],
+    data1w: [],
+    dataDaily: [],
   });
   createEffect(() => {
     console.log(currentCoin());
   });
 
   return (
-    <div class="flex flex-row h-screen">
-      <HomeForm
+    <div class="flex flex-row h-screen ">
+      <Form
         coin={currentCoin()}
         setCoin={(coinData) => setCurrentCoin(coinData)}
       />
-      <HomeChart coin={currentCoin()} />
+      <Chart coin={currentCoin()} />
     </div>
   );
 };

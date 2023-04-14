@@ -1,58 +1,26 @@
 // import type { Component } from "solid-js";
-import { LineData, LineType, createChart } from "lightweight-charts";
-import { createEffect, createRenderEffect, createSignal } from "solid-js";
+import { createChart } from "lightweight-charts";
+import { createEffect, createSignal } from "solid-js";
 import type { Component } from "solid-js";
 
-const HomeChart: Component<{
-  coin: { coin: String; token: string; image: any };
+const Chart: Component<{
+  coin: {
+    coin: String;
+    token: string;
+    image: any;
+    data3m: any;
+    data1m: any;
+    data1w: any;
+    dataDaily: any;
+  };
 }> = (props) => {
   createEffect(() => {
     if (props.coin) {
-      const THREE_MONTHS_DATA = getDateArray(
-        new Date(new Date().setDate(currDay.getDate() - 91)),
-        endDate
-      );
-      setChartTime(THREE_MONTHS_DATA);
+      setChartTime(props.coin.dataDaily);
     }
   });
-  const endDate = new Date();
-  const currDay = new Date();
 
-  //Create array fnc
-  const getDateArray = function (start: Date, end: Date) {
-    const arr = new Array();
-    const dt = new Date(start);
-
-    while (dt <= end) {
-      const date = new Date(dt);
-      const year = date.getFullYear();
-      const month = `${("0" + (date.getMonth() + 1)).slice(-2)}`;
-      const day = `${("0" + date.getDate()).slice(-2)}`;
-      arr.push({
-        time: `${year}-${month}-${day}`,
-        value: Number((Math.random() * 100).toFixed(2)),
-      });
-      dt.setDate(dt.getDate() + 1);
-    }
-
-    return arr;
-  };
-  const THREE_MONTHS_DATA: any = getDateArray(
-    new Date(new Date().setDate(currDay.getDate() - 91)),
-    endDate
-  );
-  const DAILY_DATA = [
-    { time: "2019-04-11 09:43", value: 180.34 },
-    { time: "2019-04-11 09:44", value: 180.82 },
-    { time: "2019-04-11 09:45", value: 175.77 },
-    { time: "2019-04-11 09:46", value: 178.58 },
-    { time: "2019-04-11 09:47", value: 177.52 },
-  ];
-  const ONE_MONTH_DATA: any = THREE_MONTHS_DATA.slice(60);
-  const ONE_WEEK_DATA: any = THREE_MONTHS_DATA.slice(84);
-  console.log(THREE_MONTHS_DATA);
-  console.log(ONE_MONTH_DATA);
-  const [chartTime, setChartTime] = createSignal(THREE_MONTHS_DATA);
+  const [chartTime, setChartTime] = createSignal(props.coin.dataDaily);
   const createChartBox = (chartData: any) => {
     const chartbox = document.createElement("div");
     chartbox.style.width = "806px";
@@ -109,7 +77,7 @@ const HomeChart: Component<{
     });
     lineSeries.priceScale().applyOptions({
       scaleMargins: {
-        top: 0.3, // leave some space for the legend
+        top: 0.3,
         bottom: 0.1,
       },
     });
@@ -144,12 +112,31 @@ const HomeChart: Component<{
       ) {
         toolTip.style.display = "none";
       } else {
+        const monthNames = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        const tooltipDate = param.time.toLocaleString();
+        let month = Number(tooltipDate.slice(5, 7));
+        let monthName = monthNames[month - 1];
+        let day = tooltipDate.slice(8);
+        console.log(day);
         const dateStr = param.time;
 
         toolTip.style.display = "block";
         const data: object | any = param.seriesData.get(lineSeries);
         const price = data.value;
-        toolTip.innerHTML = `<div class='text-label-color text-10px' >${dateStr}</div>
+        toolTip.innerHTML = `<div class='text-label-color text-10px' >${monthName} ${day}${", 10:23:42 PM"}</div>
         
         <div class='inline-flex'><span class='text-white text-10px'>Balance:</span>
         <span class='text-chart-green text-10px pl-1'> $${price}</span>
@@ -182,8 +169,7 @@ const HomeChart: Component<{
         <button
           class="py-1 px-2 text-xs text-white rounded bg-border-component"
           onClick={() => {
-            setChartTime(DAILY_DATA);
-            console.log(chartTime);
+            setChartTime(props.coin.dataDaily);
           }}
         >
           24H
@@ -191,8 +177,7 @@ const HomeChart: Component<{
         <button
           class="py-1 px-2 text-xs text-white rounded bg-border-component"
           onClick={() => {
-            setChartTime(ONE_WEEK_DATA);
-            console.log(chartTime);
+            setChartTime(props.coin.data1w);
           }}
         >
           1W
@@ -200,8 +185,7 @@ const HomeChart: Component<{
         <button
           class="py-1 px-2 text-xs text-white rounded bg-border-component"
           onClick={() => {
-            setChartTime(ONE_MONTH_DATA);
-            console.log(chartTime);
+            setChartTime(props.coin.data1m);
           }}
         >
           1M
@@ -209,8 +193,7 @@ const HomeChart: Component<{
         <button
           class="py-1 px-2 text-xs text-white rounded bg-border-component"
           onClick={() => {
-            setChartTime(THREE_MONTHS_DATA);
-            console.log(chartTime);
+            setChartTime(props.coin.data3m);
           }}
         >
           3M
@@ -221,4 +204,4 @@ const HomeChart: Component<{
   );
 };
 
-export default HomeChart;
+export default Chart;

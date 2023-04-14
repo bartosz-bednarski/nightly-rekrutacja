@@ -1,11 +1,11 @@
 import { Component, createEffect, createSignal } from "solid-js";
-import bitcoin from "../assets/bitcoin.png";
-import ethereum from "../assets/ethereum.png";
-import usd from "../assets/usd.png";
-import tetherus from "../assets/tetherus.png";
-import near from "../assets/near.png";
-import aptos from "../assets/aptos.png";
-import DropdownMenuItem from "./DropdownMenuItem";
+import bitcoin from "../../assets/bitcoin.png";
+import ethereum from "../../assets/ethereum.png";
+import usd from "../../assets/usd.png";
+import tetherus from "../../assets/tetherus.png";
+import near from "../../assets/near.png";
+import aptos from "../../assets/aptos.png";
+import DropdownItem from "./DropdownItem";
 
 const MENU_ITEMS = [
   { coin: "Bitcoin", token: "BTC", image: bitcoin },
@@ -15,9 +15,16 @@ const MENU_ITEMS = [
   { coin: "NEAR Protocol", token: "NEAR", image: near },
   { coin: "Aptos", token: "APT", image: aptos },
 ];
-const DropdownMenu: Component<{
+const Dropdown: Component<{
   hideMenu: any;
-  setCoin: (coinData: { coin: string; token: string; image: any }) => any;
+  setCoin: (coinData: {
+    coin: string;
+    token: string;
+    image: any;
+    data3m: [any];
+    data1m: [any];
+    data1w: [any];
+  }) => any;
 }> = (props) => {
   const [searchCoin, setSearchCoin] = createSignal("");
   createEffect(() => {
@@ -28,7 +35,7 @@ const DropdownMenu: Component<{
     const output = MENU_ITEMS.filter((element) =>
       element.token.toLowerCase().startsWith(searchCoin())
     ).map((item) => (
-      <DropdownMenuItem
+      <DropdownItem
         setCoin={props.setCoin}
         hideMenu={props.hideMenu}
         src={item.image}
@@ -63,9 +70,8 @@ const DropdownMenu: Component<{
         </svg>
       </div>
       {searchBarHandler()}
-      <button onClick={props.hideMenu}>Hide menu</button>
     </div>
   );
 };
 
-export default DropdownMenu;
+export default Dropdown;
