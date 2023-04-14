@@ -29,7 +29,7 @@ const Dropdown: Component<{
   const [searchCoin, setSearchCoin] = createSignal("");
   createEffect(() => {
     searchBarHandler();
-    console.log(searchCoin());
+    searchCoin();
   });
   const searchBarHandler = () => {
     const output = MENU_ITEMS.filter((element) =>

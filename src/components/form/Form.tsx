@@ -27,7 +27,7 @@ const Form: Component<{
     );
   });
   createEffect(() => {
-    console.log(withdrawInput());
+    withdrawInput();
     amountInput();
     const WithdrawSchema = z.object({
       withdraw: z.string().length(32).regex(capital),

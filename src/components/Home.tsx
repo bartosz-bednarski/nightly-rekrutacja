@@ -13,7 +13,7 @@ const Home: Component = () => {
     dataDaily: [],
   });
   createEffect(() => {
-    console.log(currentCoin());
+    currentCoin();
   });
 
   return (

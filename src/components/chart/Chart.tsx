@@ -130,7 +130,6 @@ const Chart: Component<{
         let month = Number(tooltipDate.slice(5, 7));
         let monthName = monthNames[month - 1];
         let day = tooltipDate.slice(8);
-        console.log(day);
         const dateStr = param.time;
 
         toolTip.style.display = "block";
