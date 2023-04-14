@@ -8,9 +8,11 @@
 textarea:focus,
 input:focus {
   outline: none;
+  background-color: transparent;
 }
 input {
-  background-color: transparent;
+  background: transparent;
+  border: none;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
